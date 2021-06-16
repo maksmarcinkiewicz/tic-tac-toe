@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import title from './img/title.svg';
-
 
 function Square(props) {
     
@@ -89,9 +87,11 @@ function Square(props) {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map( (step, move) => {
-            const desc = move ? 'Go to move ' + move : 'Go to game start';
+            const desc = move ? 'Go to move ' + move : 'Go to start!';
+            
+           
             return (
-                <li key={move}>
+                <li key={move} className="move-box">
                     <button className="button" onClick={() => this.jumpTo(move)}>{desc}</button>
                 </li>
             );
@@ -105,8 +105,9 @@ function Square(props) {
         }
 
         return (
-        <div className="container">
-          <img src={title}/>
+          <React.Fragment>
+          <h1 className='title'>Tic Tac Toe</h1>
+          <h2>{status}</h2>
           <div className="game">
             
             <div className="game-board">
@@ -115,12 +116,11 @@ function Square(props) {
                   onClick={(i) => this.handleClick(i)}
               />
             </div>
-            <div className="game-info">
-              <div className="status-info">{status}</div>
-              <ol className="btn-moves-info">{moves}</ol>
-            </div>
+            <ol className="btn-moves-info">
+                  {moves}
+            </ol> 
           </div>
-        </div>
+          </React.Fragment>
       );
     }
   }
